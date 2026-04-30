@@ -1,0 +1,143 @@
+.cv-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+}
+
+.cv-section {
+  margin-bottom: 4rem;
+}
+
+.cv-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.cv-icon {
+  color: var(--color-accent);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #e2e8f0;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -2.45rem;
+  top: 0.25rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  border: 3px solid var(--color-white);
+  box-shadow: 0 0 0 2px var(--color-accent);
+}
+
+.timeline-title {
+  font-size: 1.3rem;
+  color: var(--color-text-dark);
+  margin-bottom: 0.3rem;
+}
+
+.timeline-subtitle {
+  font-size: 1rem;
+  color: var(--color-accent);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.timeline-text {
+  color: var(--color-text-light);
+  line-height: 1.7;
+}
+
+.cv-card {
+  background-color: var(--bg-card);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0,0,0,0.05);
+  position: sticky;
+  top: 100px;
+}
+
+.cv-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.4rem;
+  color: var(--color-primary);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.cv-icon-small {
+  color: var(--color-accent);
+}
+
+.skill-category {
+  margin-bottom: 2rem;
+}
+
+.skill-category:last-child {
+  margin-bottom: 0;
+}
+
+.skill-category h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--color-text-dark);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.skill-tags span {
+  background-color: #f1f5f9;
+  color: var(--color-primary);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 960px) {
+  .cv-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .cv-card {
+    position: static;
+  }
+}
