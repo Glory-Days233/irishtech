@@ -21,7 +21,6 @@ const Portfolio = () => {
           description: repo.description || 'No description provided for this repository.',
           tags: repo.language ? [repo.language] : ['GitHub Project'],
           imageUrl: '',
-          sourceUrl: repo.html_url,
           liveUrl: repo.homepage || ''
         }));
         
