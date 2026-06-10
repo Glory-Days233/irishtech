@@ -9,19 +9,46 @@ const Contact = () => {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleChange = (e) => {
     setFormData({...formData, [e.target.name]: e.target.value});
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1000);
+    setSubmitting(true);
+    setErrorMsg('');
+
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '3eb989d9-3a82-41d4-8e96-e37879a0cca7';
+
+    const submissionData = new FormData();
+    submissionData.append("access_key", accessKey);
+    submissionData.append("name", formData.name);
+    submissionData.append("email", formData.email);
+    submissionData.append("message", formData.message);
+    submissionData.append("subject", "New Message from Irish Tech Contact Form");
+    submissionData.append("from_name", "Irish Tech Website");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: submissionData
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setErrorMsg(data.message || "Failed to send message. Please try again.");
+      }
+    } catch (err) {
+      setErrorMsg("Network error. Please verify your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -80,6 +107,12 @@ const Contact = () => {
                 </div>
               ) : (
                 <form className="contact-form" onSubmit={handleSubmit}>
+                  {errorMsg && (
+                    <div className="error-message">
+                      {errorMsg}
+                    </div>
+                  )}
+                  
                   <div className="form-group">
                     <label htmlFor="name">Name</label>
                     <input 
@@ -119,12 +152,13 @@ const Contact = () => {
                     ></textarea>
                   </div>
                   
-                  <button type="submit" className="btn btn-primary submit-btn">
-                    <Send size={18} /> Send Message
+                  <button type="submit" className="btn btn-primary submit-btn" disabled={submitting}>
+                    {submitting ? 'Sending...' : <><Send size={18} /> Send Message</>}
                   </button>
                 </form>
               )}
             </div>
+
 
           </div>
         </div>
