@@ -67,7 +67,7 @@ const Contact = () => {
             <div className="contact-info animate-slide-up">
               <h2>Get In Touch</h2>
               <p className="contact-subtitle">
-                Whether you have a question about our services, need to request a quote, or just want to say hi, my inbox is always open.
+                Whether you have a question about our services, need a copy of my CV, or want to request a quote, my inbox is always open. Let me know how I can help!
               </p>
               
               <div className="info-items">
